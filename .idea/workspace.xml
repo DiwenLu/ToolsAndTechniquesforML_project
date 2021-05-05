@@ -4,7 +4,6 @@
     <list default="true" id="1223d8c7-1a1c-440e-a88e-78a195548fec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/draft.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/draft.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main_snips.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_snips.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/make_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/make_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
