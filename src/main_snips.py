@@ -16,7 +16,7 @@ if __name__ == "__main__":
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = model.to(device)
 
-    optimizer = optim.SGD(model.parameters(), lr=0.01)
+    optimizer = optim.SGD(model.parameters(), lr=0.1)
     criterion = nn.CrossEntropyLoss()
 
     X_test = torch.Tensor(np.load("../data/X_test.npy")).float().to(device)
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     full_rewards_test = torch.Tensor(np.load("../data/full_rewards_test.npy")).float().to(device)
     assert X_test.shape[0] == len(y_test) == full_rewards_test.shape[0]
 
-    for epoch in range(50):
+    for epoch in range(100):
         model.train()
         correct = 0
         total = 0
