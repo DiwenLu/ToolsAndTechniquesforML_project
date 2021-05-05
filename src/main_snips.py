@@ -37,7 +37,7 @@ if __name__ == "__main__":
             outputs = model(context)
             action_distribution = F.softmax(outputs, dim=1)
             props_w = action_distribution.gather(1, actions.unsqueeze(1)).flatten()
-            numerator = torch.mean(torch.mul(-rewards, torch.div(props_w, props)))
+            numerator = torch.mean(torch.mul(1-rewards, torch.div(props_w, props)))
             denominator = torch.mean(torch.div(props_w, props))
             snips = torch.div(numerator, denominator)
             snips.backward()

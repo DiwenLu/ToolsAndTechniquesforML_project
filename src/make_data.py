@@ -59,7 +59,7 @@ if __name__ == "__main__":
     policy_stochastic = SKLearnPolicy(model=model, num_actions=k, is_deterministic=False)
     actions, props = policy_stochastic.select_actions(X_train)
     rewards = (actions == y_train).astype(float)
-
+    risks = 1-rewards
 
 
     np.save("../data/X_train.npy", X_train)
