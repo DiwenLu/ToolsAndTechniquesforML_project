@@ -3,8 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1223d8c7-1a1c-440e-a88e-78a195548fec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/actions_uniform.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/actions_uniform.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/rewards_uniform.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/rewards_uniform.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test_loader_uniform.pth" beforeDir="false" afterPath="$PROJECT_DIR$/data/test_loader_uniform.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/train_loader_1024_uniform.pth" beforeDir="false" afterPath="$PROJECT_DIR$/data/train_loader_1024_uniform.pth" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/draft.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/draft.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main_snips.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_snips.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/make_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/make_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/make_dataloaders.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/make_dataloaders.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

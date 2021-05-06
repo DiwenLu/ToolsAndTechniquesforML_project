@@ -6,11 +6,13 @@ from pandas.api.types import is_integer_dtype
 from numpy.random import default_rng
 from policies import *
 
+
 def get_fully_observed_bandit():
     """
     This loads in a multiclass classification problem and reformulates it as a fully observed bandit problem.
 
     """
+
     df_l = pd.read_csv('../data/letter-recognition.data',
                        names=['a'] + [f'x{i}' for i in range(16)])
     X = df_l.drop(columns=['a'])
@@ -52,19 +54,18 @@ if __name__ == "__main__":
     y_test = best_actions.iloc[test_idx].to_numpy()
     full_rewards_test = full_rewards[test_idx]
 
-    #model = LogisticRegression(multi_class='multinomial', solver="newton-cg")
-    #model.fit(X_train, y_train)
-    #print("train accuracy:", model.score(X_train, y_train))
-    #print("test accuracy:", model.score(X_test, y_test))
-    #policy_stochastic = SKLearnPolicy(model=model, num_actions=k, is_deterministic=False)
-    #actions, props = policy_stochastic.select_actions(X_train)
+    # model = LogisticRegression(multi_class='multinomial', solver="newton-cg")
+    # model.fit(X_train, y_train)
+    # print("train accuracy:", model.score(X_train, y_train))
+    # print("test accuracy:", model.score(X_test, y_test))
+    # policy_stochastic = SKLearnPolicy(model=model, num_actions=k, is_deterministic=False)
+    # actions, props = policy_stochastic.select_actions(X_train)
 
     uniform_policy = UniformActionPolicy(num_actions=k)
     actions, props = uniform_policy.select_actions(X_train)
 
     rewards = (actions == y_train).astype(float)
-    risks = 1-rewards
-
+    risks = 1 - rewards
 
     np.save("../data/X_train_uniform.npy", X_train)
     np.save("../data/y_train_uniform.npy", y_train)

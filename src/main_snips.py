@@ -24,6 +24,7 @@ if __name__ == "__main__":
     full_rewards_test = torch.Tensor(np.load("../data/full_rewards_test_uniform.npy")).float().to(device)
     assert X_test.shape[0] == len(y_test) == full_rewards_test.shape[0]
 
+    best_value = 0.0
     for epoch in range(100):
         model.train()
         correct = 0
@@ -46,10 +47,7 @@ if __name__ == "__main__":
             _, predicted = torch.max(outputs.data, 1)
             total += targets.size(0)
             correct += predicted.eq(targets.data).cpu().sum()
-            #if batch_idx % 1000 == 0:
-            #    print(snips)
-        #print(torch.var(torch.Tensor(lst)).item())
-        print("snips estimate:", snips.item())
+
 
         # get value estimate
         model.eval()
@@ -57,4 +55,8 @@ if __name__ == "__main__":
         action_distribution = F.softmax(outputs, dim=1)
         assert action_distribution.shape == full_rewards_test.shape
         direct_estimate = torch.sum(action_distribution * full_rewards_test)/action_distribution.shape[0]
-        print(direct_estimate.item())
+
+        if direct_estimate > best_value:
+            best_value = direct_estimate
+            torch.save(model.state_dict(), "../models/model.pth")
+            print("saved best model: snips {}, value {}".format(snips.item(), best_value.item()))
