@@ -10,8 +10,8 @@ from make_dataloaders import *
 
 
 if __name__ == "__main__":
-    train_loader = torch.load("../data/train_loader_1024.pth")
-    test_loader = torch.load("../data/test_loader.pth")
+    train_loader = torch.load("../data/train_loader_1024_uniform.pth")
+    test_loader = torch.load("../data/test_loader_uniform.pth")
     model = Net()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = model.to(device)
@@ -19,9 +19,9 @@ if __name__ == "__main__":
     optimizer = optim.SGD(model.parameters(), lr=0.1)
     criterion = nn.CrossEntropyLoss()
 
-    X_test = torch.Tensor(np.load("../data/X_test.npy")).float().to(device)
-    y_test = torch.LongTensor(np.load("../data/y_test.npy")).to(device)
-    full_rewards_test = torch.Tensor(np.load("../data/full_rewards_test.npy")).float().to(device)
+    X_test = torch.Tensor(np.load("../data/X_test_uniform.npy")).float().to(device)
+    y_test = torch.LongTensor(np.load("../data/y_test_uniform.npy")).to(device)
+    full_rewards_test = torch.Tensor(np.load("../data/full_rewards_test_uniform.npy")).float().to(device)
     assert X_test.shape[0] == len(y_test) == full_rewards_test.shape[0]
 
     for epoch in range(100):
@@ -48,7 +48,7 @@ if __name__ == "__main__":
             correct += predicted.eq(targets.data).cpu().sum()
             #if batch_idx % 1000 == 0:
             #    print(snips)
-        print(torch.var(torch.Tensor(lst)).item())
+        #print(torch.var(torch.Tensor(lst)).item())
         print("snips estimate:", snips.item())
 
         # get value estimate

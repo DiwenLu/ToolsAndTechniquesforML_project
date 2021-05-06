@@ -52,24 +52,28 @@ if __name__ == "__main__":
     y_test = best_actions.iloc[test_idx].to_numpy()
     full_rewards_test = full_rewards[test_idx]
 
-    model = LogisticRegression(multi_class='multinomial', solver="newton-cg")
-    model.fit(X_train, y_train)
-    print("train accuracy:", model.score(X_train, y_train))
-    print("test accuracy:", model.score(X_test, y_test))
-    policy_stochastic = SKLearnPolicy(model=model, num_actions=k, is_deterministic=False)
-    actions, props = policy_stochastic.select_actions(X_train)
+    #model = LogisticRegression(multi_class='multinomial', solver="newton-cg")
+    #model.fit(X_train, y_train)
+    #print("train accuracy:", model.score(X_train, y_train))
+    #print("test accuracy:", model.score(X_test, y_test))
+    #policy_stochastic = SKLearnPolicy(model=model, num_actions=k, is_deterministic=False)
+    #actions, props = policy_stochastic.select_actions(X_train)
+
+    uniform_policy = UniformActionPolicy(num_actions=k)
+    actions, props = uniform_policy.select_actions(X_train)
+
     rewards = (actions == y_train).astype(float)
     risks = 1-rewards
 
 
-    np.save("../data/X_train.npy", X_train)
-    np.save("../data/y_train.npy", y_train)
-    np.save("../data/rewards.npy", rewards)
-    np.save("../data/actions.npy", actions)
-    np.save("../data/props.npy", props)
-    np.save("../data/X_test.npy", X_test)
-    np.save("../data/y_test.npy", y_test)
-    np.save("../data/full_rewards_test.npy", full_rewards_test)
+    np.save("../data/X_train_uniform.npy", X_train)
+    np.save("../data/y_train_uniform.npy", y_train)
+    np.save("../data/rewards_uniform.npy", rewards)
+    np.save("../data/actions_uniform.npy", actions)
+    np.save("../data/props_uniform.npy", props)
+    np.save("../data/X_test_uniform.npy", X_test)
+    np.save("../data/y_test_uniform.npy", y_test)
+    np.save("../data/full_rewards_test_uniform.npy", full_rewards_test)
 
 
     print("\n-----Data saved-----")

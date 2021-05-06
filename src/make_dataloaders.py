@@ -31,14 +31,14 @@ class MyDataset(Dataset):
 
 
 if __name__ == "__main__":
-    X_train = np.load("../data/X_train.npy")
-    y_train = np.load("../data/y_train.npy")
-    X_test = np.load("../data/X_test.npy")
-    y_test = np.load("../data/y_test.npy")
-    full_rewards_test = np.load("../data/full_rewards_test.npy")
-    rewards = np.load("../data/rewards.npy")
-    props = np.load("../data/props.npy")
-    actions = np.load("../data/actions.npy")
+    X_train = np.load("../data/X_train_uniform.npy")
+    y_train = np.load("../data/y_train_uniform.npy")
+    X_test = np.load("../data/X_test_uniform.npy")
+    y_test = np.load("../data/y_test_uniform.npy")
+    full_rewards_test = np.load("../data/full_rewards_test_uniform.npy")
+    rewards = np.load("../data/rewards_uniform.npy")
+    props = np.load("../data/props_uniform.npy")
+    actions = np.load("../data/actions_uniform.npy")
 
     assert X_train.shape[0] == y_train.shape[0] == len(rewards) == len(props) == len(actions)
     assert X_test.shape[0] == full_rewards_test.shape[0] == y_test.shape[0]
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     test_dataset = MyDataset(train=False, context=X_test, best_actions=y_test)
     test_loader = DataLoader(test_dataset, batch_size=64)
 
-    torch.save(train_loader, "../data/train_loader_{}.pth".format(BATCH_SIZE))
-    torch.save(test_loader, "../data/test_loader.pth")
+    torch.save(train_loader, "../data/train_loader_{}_uniform.pth".format(BATCH_SIZE))
+    torch.save(test_loader, "../data/test_loader_uniform.pth")
 
     print("\n-----Data loaders saved-----")
