@@ -10,7 +10,8 @@ from make_dataloaders import *
 
 
 if __name__ == "__main__":
-    train_loader = torch.load("../data/train_loader_1024_uniform.pth")
+    BATCH_SIZE = 1024
+    train_loader = torch.load("../data/train_loader_{}_uniform.pth".format(BATCH_SIZE))
     test_loader = torch.load("../data/test_loader_uniform.pth")
     model = Net()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -58,5 +59,7 @@ if __name__ == "__main__":
 
         if direct_estimate > best_value:
             best_value = direct_estimate
-            torch.save(model.state_dict(), "../models/model.pth")
+            torch.save(model.state_dict(), "../models/model_snips_{}.pth".format(BATCH_SIZE))
             print("saved best model: snips {}, value {}".format(snips.item(), best_value.item()))
+            acc = correct/total
+            print("acc:", acc.item(), "\n")
